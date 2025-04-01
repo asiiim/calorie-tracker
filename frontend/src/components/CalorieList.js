@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { getCalorieEntries, deleteCalorieEntry } from "../api";
+import React from "react";
+import { deleteCalorieEntry } from "../api";
 
-const CalorieList = () => {
-    const [entries, setEntries] = useState([]);
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        const response = await getCalorieEntries();
-        setEntries(response.data);
-    };
-
+const CalorieList = ({ entries, refresh }) => {
     const handleDelete = async (id) => {
         await deleteCalorieEntry(id);
-        fetchData();
+        refresh();
     };
 
     return (

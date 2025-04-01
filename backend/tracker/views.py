@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import CalorieEntry
+from .serializers import CalorieEntrySerializer
 
-# Create your views here.
+class CalorieEntryViewSet(viewsets.ModelViewSet):
+    queryset = CalorieEntry.objects.all()
+    serializer_class = CalorieEntrySerializer
